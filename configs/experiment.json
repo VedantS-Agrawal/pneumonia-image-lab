@@ -1,0 +1,14 @@
+{
+  "dataset": "pneumoniamnist",
+  "sizes": [28],
+  "seeds": [42],
+  "epochs": 30,
+  "patience": 8,
+  "batch_size": 64,
+  "learning_rate": 0.002,
+  "weight_decay": 0.0001,
+  "threshold_selection": "maximum validation balanced accuracy (Youden J)",
+  "checkpoint_selection": "maximum validation ROC-AUC",
+  "augmentation": "none",
+  "representative_seed": 42
+}
