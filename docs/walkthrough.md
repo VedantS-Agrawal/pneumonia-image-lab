@@ -30,11 +30,13 @@ Run the static server. Select an X-ray and reveal its label. Click a convolution
 
 ## 7. Verify
 
-Run `python -m unittest discover -s tests -p 'test_*.py'` and `node tests/inference.mjs`. Check the exported browser model agrees with Python before trusting the visualization. A visually plausible feature map alone is not verification.
+Run `python -m unittest discover -s tests -p 'test_*.py'`, `node tests/inference.mjs`, and `node tests/paper.mjs`. Check the exported browser model agrees with Python before trusting the visualization. A visually plausible feature map alone is not verification.
 
 ## 8. GitHub and publishing
 
-The static website is `dist/`. Training data/environments/checkpoints are ignored. The GitHub repository stores source, reproducibility documents, and small browser artifacts. Deployment can serve `dist/` with any static host; the included Sites manifest uses owner-private hosting unless sharing is changed explicitly.
+The public website is https://vedants-agrawal.github.io/pneumonia-image-lab/. The paper companion is under `paper/`. The GitHub Actions workflow tests and deploys `dist/` after each push to `main`; inspect the repository's Actions tab to check deployment status. All local asset paths are relative so both pages work under the repository's URL prefix.
+
+Training data/environments/checkpoints are ignored. The repository stores source, reproducibility documents, and small browser artifacts. The separate Sites mirror retains its owner-private audience.
 
 ## Future work
 

@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {models,diseases,diseaseF1,classificationMetrics,auc,focal,toyLabels,toyScores,perClassToys} from '../dist/paper/data.js';
+assert.equal(diseases.length,14);
+assert.equal(models[0].auc,.8527);assert.equal(models[0].f1,.3861);
+assert.deepEqual(diseases.find(d=>d[0]==='Pneumonia').slice(1),[.768,.740,.713,.656]);
+assert.equal(diseaseF1.length,diseases.length);
+assert.deepEqual(diseaseF1[12],[.082,0,0]);
+assert.deepEqual(diseaseF1[13],[null,null,null]);
+assert.ok(diseaseF1.slice(0,13).every(row=>row.length===3 && row.every(v=>Number.isFinite(v) && v>=0 && v<=1)));
+assert.equal(auc([1,0],[.8,.2]),1);assert.equal(auc([1,0],[.2,.8]),0);assert.equal(auc([1,0],[.5,.5]),.5);
+assert.equal(classificationMetrics(toyLabels,toyScores,.5).f1,0);
+assert.ok(auc(toyLabels,toyScores)>.8);
+assert.ok(classificationMetrics(toyLabels,toyScores,.25).f1>0);
+assert.equal(focal(.8,0),-Math.log(.8));assert.ok(focal(.9,2)<focal(.9,0));
+const tuned=[.6,.35,.16];perClassToys.forEach((c,i)=>assert.equal(classificationMetrics(c.labels,c.scores,tuned[i]).f1,1));
+console.log('Paper tables, AUC tie handling, threshold decisions, and loss simulations passed.');

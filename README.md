@@ -20,6 +20,15 @@ One seed, one architecture, one resolution. These are benchmark results, not ext
 
 Repository: https://github.com/VedantS-Agrawal/pneumonia-image-lab
 
+## Live website
+
+- [Pneumonia Image Lab](https://vedants-agrawal.github.io/pneumonia-image-lab/)
+- [CheXNet interactive paper guide](https://vedants-agrawal.github.io/pneumonia-image-lab/paper/)
+
+GitHub Pages serves the committed `dist/` directory. Pushes to `main` run the numerical/data checks and deploy through `.github/workflows/pages.yml`.
+
+The paper guide explores the results of [arXiv:2505.06646v1](https://arxiv.org/html/2505.06646v1), alongside interactive explanations of multi-label outputs, patient splitting, DenseNet connections, focal loss, thresholds, prevalence, calibration, and attribution. Reported numbers and synthetic teaching examples are labeled separately. This is a reading companion, not a reproduction of the authors' model. See `docs/paper-guide.md`.
+
 ## Run the existing website
 
 ```sh
@@ -51,7 +60,8 @@ Training downloads approximately 4 MB through the official MedMNIST loader. It d
 2. `src/train.py`: data loading, class weighting, checkpoint selection, threshold selection, evaluation, and export.
 3. `dist/inference.js`: the same forward-pass math, implemented in JavaScript to expose intermediate maps.
 4. `dist/app.js`: interactive layer inspector, gallery, and threshold exploration.
-5. `docs/methods.md`: experimental decisions and limitations.
+5. `dist/paper/`: interactive paper companion and transcribed result tables.
+6. `docs/methods.md`: experimental decisions and limitations.
 
 Dataset labels are normal/pneumonia. Training uses class-weighted binary cross-entropy, so the displayed sigmoid score is not a calibrated probability of disease. Test-set slider changes are exploratory and do not choose the published default threshold.
 
