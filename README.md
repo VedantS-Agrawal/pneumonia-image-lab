@@ -2,7 +2,7 @@
 
 A reproducible **28×28 PneumoniaMNIST** experiment and an interactive website explaining a small convolutional neural network.
 
-Select a test X-ray, run actual browser inference, inspect every convolution/ReLU/pooling map, reveal the dataset label, and explore errors and classification thresholds. No uploads. No clinical use.
+Select a test X-ray, run actual browser inference, inspect every convolution/ReLU/pooling map, reveal the dataset label, and explore errors and classification thresholds.
 
 ## Results from this run
 
