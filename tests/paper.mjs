@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
 import {models,diseases,diseaseF1,classificationMetrics,auc,focal,toyLabels,toyScores,perClassToys} from '../dist/paper/data.js';
 assert.equal(diseases.length,14);
 assert.equal(models[0].auc,.8527);assert.equal(models[0].f1,.3861);
@@ -13,4 +14,5 @@ assert.ok(auc(toyLabels,toyScores)>.8);
 assert.ok(classificationMetrics(toyLabels,toyScores,.25).f1>0);
 assert.equal(focal(.8,0),-Math.log(.8));assert.ok(focal(.9,2)<focal(.9,0));
 const tuned=[.6,.35,.16];perClassToys.forEach((c,i)=>assert.equal(classificationMetrics(c.labels,c.scores,tuned[i]).f1,1));
+assert.doesNotMatch(readFileSync(new URL('../dist/paper/index.html',import.meta.url),'utf8'),/<\/[A-Za-z][\w:-]*\s+[^\s>]/,'Closing tags must not contain attributes; they can remove interactive controls.');
 console.log('Paper tables, AUC tie handling, threshold decisions, and loss simulations passed.');
